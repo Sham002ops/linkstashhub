@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGO_URL!);
   
 
 const UserSchema = new Schema({
-    username : [{type: String, unique: true}],
+    username : {type: String, unique: true},
     password : String,
     email: String
 })

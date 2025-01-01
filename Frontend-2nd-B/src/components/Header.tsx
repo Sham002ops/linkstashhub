@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Button from './UI/Button'
 import { PlusIcon } from '../icons/plusIcon'
 import { BACKEND_URL, SHARE_URL } from '../Config';
@@ -60,7 +60,7 @@ const Header = () => {
 
       useEffect(()=>{
         refresh()
-      }, [modalOpen])
+      }, [modalOpen, refresh])
 
   return (
     <div className='p-4 h-20 bg-gray-300 relative flex justify-between'>

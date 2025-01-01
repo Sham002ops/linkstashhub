@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 // import { useContent } from '../hooks/useContent';
 import { Card } from '../UI/Card';
 import { BACKEND_URL } from '../../Config';
@@ -10,16 +10,24 @@ import { useContent } from '../hooks/useContent';
 import SearchBar from '../SearchBar';
 
 
-const ContentPage = ({type, searchQuery, setSearchQuery}) => {
-    const [content, setContent] = useState([]);
+interface Content {
+    _id: string;
+    type: string;
+    tags: string[];
+    link: string;
+    title: string;
+}
+
+const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "youtube" | "instagram" | "facebook" | "pinterest", searchQuery: string, setSearchQuery: (query: string) => void}) => {
+    const [content, setContent] = useState<Content[]>([]);
     const [loading, setLoading ] = useState(true);
-    const {contents,refresh} = useContent();
+    const {contents, refresh} = useContent();
     const navigate = useNavigate();
     // const {contents} = useContent();
 
     const handleDelete = async (id: string) => {
       try {
-          const updatedContents = contents.filter((content) => content._id !== id);
+          const updatedContents = contents.filter((content: Content) => content._id !== id);
           setContent(updatedContents); 
           refresh(); 
       } catch (error) {
@@ -86,7 +94,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}) => {
           key={_id}
           _id={_id}
           tags={tags}
-          type={type}
+          type={type as "twitter" | "youtube" | "instagram" | "facebook" | "pinterest"}
           link={link}
           title={title}
           

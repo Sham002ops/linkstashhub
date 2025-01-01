@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export function useContent() {
     const [contents, setContents] = useState([]);
-    const {navigate} = useNavigate();
+    const navigate = useNavigate();
     
     const [isSessionExpired, setIsSessionExpired] = useState(false);
     
@@ -20,14 +20,14 @@ export function useContent() {
                 })
                 setContents(response.data.content);
                 
-        } catch (error: any) {
-            if (error.response && error.response.data.message === "Token Expired") {
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response && error.response.data.message === "Token Expired") {
                 setIsSessionExpired(true);
                 window.localStorage.clear();
                 navigate("/timeout");
             } 
             if (isSessionExpired) {
-                return <SessionExpired open={true} />;
+                return <SessionExpired />;
             }else {
                 console.error("Error fetching content:", error);
             }
@@ -75,6 +75,7 @@ useEffect(() => {
     return () => {
         clearInterval(interval);
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
 

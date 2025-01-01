@@ -5,7 +5,7 @@ import { useRef } from "react";
 import SearchIcon from "../icons/SearchIcon";
 
  function SearchBar({setSearchQuery}) {
- const TagRef = useRef<HTMLInputElement>()
+ const TagRef = useRef<HTMLInputElement>(null)
     
    async function CallByTag(){
     const tag = TagRef.current?.value;

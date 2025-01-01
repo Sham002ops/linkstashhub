@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import  { useRef, useState } from 'react'
 import CloseIcon from '../../icons/CloseIcon'
 import Button from './Button'
 import { Input } from './InputBox'
@@ -18,8 +18,8 @@ enum ContentType {
 }
 
 const CreateContent = ({open, onClose} ) => {
-    const titleRef = useRef<HTMLInputElement>();
-    const linkRef = useRef<HTMLInputElement>();
+    const titleRef = useRef<HTMLInputElement>(null);
+    const linkRef = useRef<HTMLInputElement>(null);
     const [type, setType] = useState(ContentType.Youtube);
     const [tags, setTags] = useState<string[]>([]); 
     const [tagInput, setTagInput] = useState<string>("");

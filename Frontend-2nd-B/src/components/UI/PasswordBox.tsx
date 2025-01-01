@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface InputProps {
     placeholder: string;
-    reference?: any;
+    reference?: React.RefObject<HTMLInputElement>;
 }
 
 export function PasswordBox({ reference, placeholder }: InputProps) {

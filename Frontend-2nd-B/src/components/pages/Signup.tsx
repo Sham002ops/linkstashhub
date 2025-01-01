@@ -1,16 +1,15 @@
-import React, { useRef } from 'react'
+import  { useRef } from 'react'
 import { Input } from '../UI/InputBox'
 import Button from '../UI/Button'
 import { BACKEND_URL } from '../../Config';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { data, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { PasswordBox } from '../UI/PasswordBox';
 
 const Signup = () => {
-    const usernameRef = useRef<HTMLInputElement>();
-    const passwordRef = useRef<HTMLInputElement>();
-    const emailRef = useRef<HTMLInputElement>();
+    const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
 
@@ -34,8 +33,8 @@ async function signup (){
           alert("Signup failed: " + response.data.message);
         }
        
-       } catch(e: any){
-        if(e.response && e.response.data.error){
+       } catch(e: unknown){
+        if (axios.isAxiosError(e) && e.response && e.response.data.error){
           alert("Validation Error: " + e.response.data.error.message);
         } else{
            alert("An unexpected error occurred.");

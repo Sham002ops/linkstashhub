@@ -1,7 +1,7 @@
 interface InputProps {
     placeholder : string,
     size: "xs" |"sm" | "md" | "lg" | "lx"|"2lx";
-    reference ?: any,
+    reference ?: React.RefObject<HTMLInputElement>,
     value?: "email" | "password"| "text"
     Px?: "px2" |"px4" |"px6"|"px8"|"px10",
     Py?: "py2" |"py4" |"py6"|"py8"|"py10",

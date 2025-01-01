@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import  { ReactElement } from 'react'
 
 type Variants ="primary" | "secondary"|"icon";
 export interface ButtonProps {

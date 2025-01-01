@@ -1,5 +1,3 @@
-import React from 'react'
-
 const PinterestIcon = ({...props }) => {
   return <svg
   fill="#33363F"

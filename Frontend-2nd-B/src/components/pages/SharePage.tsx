@@ -8,9 +8,9 @@ import Button from "../UI/Button";
 interface ShareContent  {
     username: string;
     content: {
-        type: string;
+        type: "twitter" | "youtube" | "instagram" | "facebook" | "pinterest";
         link: string;
-        title: string
+        title: string;
     }[];
 }
 
@@ -66,9 +66,17 @@ export const SharePage: React.FC = () => {
         <div className="p-4 min-h-screen bg-gray-100">
             <h1 className="text-2xl font-bold mb-4">{data?.username}'s Shared Content</h1>
             <div className="flex gap-4 flex-wrap">
-                {data?.content.map(({ type, link, title}, index) => <Card
-                key={index} type={type} link={link} title={title} />
-            )}
+            {data?.content.map(({ type, link, title}, index) => (
+                <Card
+                    key={index}
+                    type={type}
+                    link={link}
+                    title={title}
+                    _id={index.toString()}
+                    tags={[]}
+                    onDelete={() => {}}
+                />
+            ))}
             </div>
 
         </div>

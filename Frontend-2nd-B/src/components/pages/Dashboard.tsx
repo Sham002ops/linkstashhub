@@ -8,23 +8,23 @@ import { useContent } from '../hooks/useContent'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
 import CreateContent from '../UI/CreateContent'
-import SessionExpired from './SessionExpired'
+
 
 export function Dashboard({searchQuery, setSearchQuery}) {
       const [modalOpen, setModalOpen]= useState(false);
       
-      const {contents, refresh } = useContent();
+      const {contents = [], refresh }: { contents: Array<{ _id: string, type: "twitter" | "youtube" | "instagram" | "facebook" | "pinterest", tags: string[], link: string, title: string }>, refresh: () => void } = useContent();
       
       
       const handleDelete = (id: string) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const updatedContents = contents.filter((content) => content._id !== id);
+    
+      contents.filter((content) => content._id !== id);
       refresh();
     }
 
       useEffect(()=>{
         refresh()
-      }, [modalOpen])
+      }, [modalOpen, refresh])
 
      
   

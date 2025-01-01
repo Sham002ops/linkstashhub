@@ -37,8 +37,8 @@ export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
             const confermDelete = window.confirm("Are you sure you want to delete this content?")
             if(confermDelete){
                  const success = await DeleteContent(_id);
-               
-            if(success) {
+                           
+            if(success !== undefined) {
                 onDelete(_id)
             }
             }

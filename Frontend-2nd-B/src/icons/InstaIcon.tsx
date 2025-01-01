@@ -1,5 +1,3 @@
-import React from 'react'
-
 const InstaIcon = ({...props}) => {
   return <svg
   viewBox="0 0 24 24"

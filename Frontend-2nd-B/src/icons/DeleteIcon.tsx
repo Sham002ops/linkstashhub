@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { IconProps, iconSizeVariants } from './icon'
 
 const DeleteIcon = (props: IconProps) => {

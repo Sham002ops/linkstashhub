@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { Input } from '../UI/InputBox'
 import Button from '../UI/Button'
 import { BACKEND_URL } from '../../Config';
@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { PasswordBox } from '../UI/PasswordBox';
 
 const Signin = () => {
-    const usernameRef = useRef<HTMLInputElement>();
-    const passwordRef = useRef<HTMLInputElement>();
+    const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
 
 async function signin (){
@@ -31,12 +31,12 @@ async function signin (){
         
         
         
-    } catch (error:any) {
-      if(error.response && error.response.data.error){
-                alert("Validation Error: " + error.response.data.error.message);
-              } else{
-                 alert("Password Don't Match");
-              }
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response && error.response.data.error) {
+        alert("Validation Error: " + error.response.data.error.message);
+      } else {
+        alert("Password Don't Match");
+      }
     }
   }
        

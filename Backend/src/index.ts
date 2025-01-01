@@ -77,8 +77,6 @@ app.post("/api/v1/signup", async ( req: Request, res: Response) => {
 })
 
 
-
-
 app.post("/api/v1/signin", async ( req: Request, res: Response) => {
     
     try{
@@ -118,8 +116,7 @@ app.post("/api/v1/signin", async ( req: Request, res: Response) => {
     if (passwordMatch) {
         const token = jwt.sign({
             id: userExists?._id
-        }, JWT_PASSWORD as string,
-        {expiresIn: "30m"});
+        }, JWT_PASSWORD as string);
 
         // add cookie logic
 
@@ -136,6 +133,7 @@ app.post("/api/v1/signin", async ( req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server error" });
 }
 })
+
 
 app.post("/api/v1/content", userMiddleware, async ( req: Request, res: Response) => {
     try {
@@ -165,6 +163,7 @@ app.post("/api/v1/content", userMiddleware, async ( req: Request, res: Response)
 }
 })
 
+
 app.get("/api/v1/content", userMiddleware, async ( req: Request, res: Response) => {
     try {
     //@ts-ignore
@@ -184,7 +183,7 @@ app.get("/api/v1/content", userMiddleware, async ( req: Request, res: Response) 
 // @ts-ignore
 app.delete("/api/v1/content/:id", userMiddleware, async ( req: Request, res: Response) => {
     
-    try {
+try {
         const { id } = req.params;
 
   try {
@@ -197,7 +196,7 @@ app.delete("/api/v1/content/:id", userMiddleware, async ( req: Request, res: Res
     res.status(500).json({ message: 'Error deleting content', error });
   }    
     } catch (error) {
-    console.error("Get COntent error:", error);
+    console.error("Get Content error:", error);
     res.status(500).json({ message: "Internal server error" });
 }
 
@@ -232,7 +231,6 @@ app.delete("/api/v1/content/:id", userMiddleware, async ( req: Request, res: Res
 // }
 // })
 
-
 app.post("/api/v1/brain/share", userMiddleware,async ( req: Request, res: Response): Promise<void> => {
      
     try {
@@ -248,29 +246,33 @@ app.post("/api/v1/brain/share", userMiddleware,async ( req: Request, res: Respon
                 res.json({
                 hash: existingLink.hash
                 })
-                return;
+                ;
            } 
-           const hash = random(10);
+           else if(!existingLink){
+            const hash = random(10);
            await LinkModel.create({
                  //@ts-ignore
                 userId: req.userId,
                 hash: hash
             
-            })
-                res.json({
-                    hash
-                })
+            });
+           }
+                // res.json({
+                //     hash
+                // })
 
         }else{
             await LinkModel.deleteOne({ 
                  //@ts-ignore                      
                 userId: req.userId
             });
+
+            res.json({
+                messsage: "Link Removed"
+            })
         }
 
-        res.json({
-            messsage: "Link Removed"
-        })
+        
 
     } catch (error) {
         console.error("Sharing error:", error);
@@ -278,6 +280,7 @@ app.post("/api/v1/brain/share", userMiddleware,async ( req: Request, res: Respon
     }
 
 })
+
 
 app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promise<void> => {
         try {
@@ -321,6 +324,7 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
 
 })
 
+
  app.get("/api/v1/content/type/youtube", userMiddleware, async ( req: Request, res: Response) => {
     try {
     //@ts-ignore
@@ -348,6 +352,8 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
     }
 
  });
+
+
  app.get("/api/v1/content/type/twitter", userMiddleware, async ( req: Request, res: Response) => {
     try { 
     //@ts-ignore
@@ -376,6 +382,8 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
 
 
  });
+
+
  app.get("/api/v1/content/type/instagram", userMiddleware, async ( req: Request, res: Response) => {
     try {
     //@ts-ignore
@@ -404,6 +412,8 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
 
 
  });
+
+
  app.get("/api/v1/content/type/facebook", userMiddleware, async ( req: Request, res: Response) => {
     try { 
     //@ts-ignore
@@ -433,6 +443,36 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
 
  });
 
+ app.get("/api/v1/content/type/pinterest", userMiddleware, async ( req: Request, res: Response) => {
+    try { 
+    //@ts-ignore
+    const userId = req.userId;
+    //  const type = req.params.type;
+     
+     try {
+        const filteredContent = await ContentModel.find({
+            userId: userId,
+            type: 'pinterest'
+        });
+
+        res.json({
+            content: filteredContent
+        });
+     } catch(error){
+        res.status(500).json({
+            message: "Error fetching content"
+            
+        });
+     }
+    } catch (error) {
+        console.error("facebook error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+
+
+ });
+
+
  app.get("/api/v1/content/search", async (req: Request, res: Response) => {
     try{
     const { tag } = req.query; // Tag to search for
@@ -449,6 +489,7 @@ app.get("/api/v1/brain/:shareLink",  async ( req: Request, res: Response): Promi
     res.status(500).json({ message: "Internal server error" });
 }
 });
+
 
 try {
 const PORT = process.env.PORT || 3000;

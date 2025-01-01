@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Button from './UI/Button'
 import { PlusIcon } from '../icons/plusIcon'
-import { ShareIcon } from '../icons/shareIcon';
 import { BACKEND_URL, SHARE_URL } from '../Config';
 import axios from 'axios';
 import CreateContent from './UI/CreateContent';
 import { useContent } from './hooks/useContent';
+import { ShareIcon } from '../icons/ShareIcon';
 
 
 const Header = () => {
@@ -63,12 +63,12 @@ const Header = () => {
       }, [modalOpen])
 
   return (
-    <div className='p-4 h-20 bg-gray-200 relative flex justify-between'>
+    <div className='p-4 h-20 bg-gray-300 relative flex justify-between'>
     <CreateContent open={modalOpen} onClose={()=>{
       setModalOpen(false);
     }}/>
     <div className=' flex items-center justify-between'>
-    <div className=' mr-96 pr-48 '>  
+    <div className=' mr-96 pr-60 '>  
       <span className='text-3xl font-bold text-gray-800'>All Links</span>
       </div> 
    

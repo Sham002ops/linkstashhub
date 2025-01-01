@@ -54,27 +54,28 @@ const ContentPage = ({type, searchQuery, setSearchQuery}) => {
 
   const contentHeaders = {
     youtube: "YouTube Content",
-    twitter: "Twitter Content",
+    Twitter: "Twitter/X Content",
     instagram: "Instagram Content",
     facebook: " Facebook Content",
+    Pinterest: "Pinterest Content",
   };
 
   return (
 
-    <div className=' h-40 bg-gray-200 '>
+    <div className=' h-40 bg-gray-300 '>
       <Sidebar/> 
-      <div className=' justify-between overflow-hidden  relative ml-72 '> 
+      <div className=' justify-between overflow-hidden  relative ml-64 pl-3 '> 
         <div className=' flex items-center'>
-          <h2 className="text-3xl font-bold md-4 p-8 text-purple-700">
+          <h2 className="text-3xl font-bold md-4 p-6 pl-12 text-purple-700">
             {contentHeaders[type] || "Default Content"}
           </h2>
-          <div className=' bg-gray-200 pl-96 ml-10  '>
+          <div className=' bg-gray-300 pl-96 ml-10  '>
        <SearchBar setSearchQuery={setSearchQuery}  />
        </div>
        </div>
        </div>
-      <div className=' relative ml-72 pl-8 bg-gray-200 min-h-screen overflow-auto'>
-       <div className='flex flex-wrap h-40 gap-12'>
+      <div className=' relative ml-72 pl-8 bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
+       <div className='flex flex-wrap h-40 gap-8'>
     {(() => {
         try {
             return content.filter((content) =>
@@ -102,7 +103,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}) => {
 
 
       </div>
-      <div className='bg-gray-200  h-24  relative ml-72 pt-10 '>
+      <div className='bg-gray-300  h-24  relative ml-72 pt-10 '>
       <div className=" flex justify-center items-center ">
                     <Button onClick={()=>{
                                     navigate('/dashboard')

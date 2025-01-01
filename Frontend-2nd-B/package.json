@@ -12,12 +12,14 @@
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "axios": "^1.7.9",
+    "jsonwebtoken": "^9.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-embed": "^3.7.0",
     "react-router-dom": "^7.0.2",
     "react-social-media-embed": "^2.5.17",
-    "reddit-embed": "^1.1.2"
+    "reddit-embed": "^1.1.2",
+    "tailwind-scrollbar-hide": "^2.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

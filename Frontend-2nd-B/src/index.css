@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-#ContentPage::-webkit-scrollbar {
+#ContentPage -webkit-scrollbar {
   display: none;
 }
 

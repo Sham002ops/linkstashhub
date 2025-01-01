@@ -22,7 +22,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard searchQuery={searchQuery} setSearchQuery={setSearchQuery} />}/>
         <Route path="/dashboard/share/:shareLink" element={<SharePage/>}/>
         <Route path="/content/youtube" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="youtube" />} />
-        <Route path="/content/twitter" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="Twitter" />} />
+        <Route path="/content/twitter" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="twitter" />} />
         <Route path="/content/instagram" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="instagram" />} />
         <Route path="/content/facebook" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="facebook" />} />
         <Route path="/content/pinterest" element={<ContentPage searchQuery={searchQuery} setSearchQuery={setSearchQuery}  type="pinterest" />} />

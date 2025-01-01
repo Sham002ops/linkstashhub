@@ -62,7 +62,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
 
   const contentHeaders = {
     youtube: "YouTube Content",
-    Twitter: "Twitter/X Content",
+    twitter: "Twitter/X Content",
     instagram: "Instagram Content",
     facebook: " Facebook Content",
     Pinterest: "Pinterest Content",
@@ -82,8 +82,8 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
        </div>
        </div>
        </div>
-      <div className=' relative ml-72 pl-8 bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
-       <div className='flex flex-wrap h-40 gap-8'>
+      <div className=' relative ml-72 pl-2 bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
+       <div className='flex flex-wrap h-40 gap-2'>
     {(() => {
         try {
             return content.filter((content) =>

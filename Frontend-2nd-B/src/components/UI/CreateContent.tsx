@@ -68,9 +68,9 @@ const CreateContent = ({open, onClose} ) => {
                 <div className=' backdrop-blur bg-white/10  h-screen w-screen  fixed top-0 left-0 flex justify-center'>   
                 </div>
                 <div className=' h-screen w-screen  fixed top-0 left-0 flex justify-center '>
-                <div className='flex flex-col  justify-center'>
-               <span className='bg-white border border-purple-700 shadow-md shadow-purple-700  p-8 w-full rounded-md'>
-               <div className='flex justify-end'>
+                <div className='flex flex-col  justify-center '>
+               <span className='bg-white border border-purple-700 shadow-md shadow-purple-700  p-4 w-full rounded-md'>
+               <div className='flex justify-end pb-2'>
                     <div className='cursor-pointer' onClick={onClose}>
                         <CloseIcon size='lg'/>
                     </div>    

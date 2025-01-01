@@ -2,7 +2,7 @@ import  { useRef } from 'react'
 import { Input } from '../UI/InputBox'
 import Button from '../UI/Button'
 import { BACKEND_URL } from '../../Config';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { PasswordBox } from '../UI/PasswordBox';
 

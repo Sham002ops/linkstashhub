@@ -66,17 +66,11 @@ export const SharePage: React.FC = () => {
         <div className="p-4 min-h-screen bg-gray-100">
             <h1 className="text-2xl font-bold mb-4">{data?.username}'s Shared Content</h1>
             <div className="flex gap-4 flex-wrap">
-            {data?.content.map(({ type, link, title}, index) => (
-                <Card
-                    key={index}
-                    type={type}
-                    link={link}
-                    title={title}
-                    _id={index.toString()}
-                    tags={[]}
-                    onDelete={() => {}}
-                />
-            ))}
+                {data?.content.map(({ type, link, title}, index) => <Card
+                    key={index} type={type} link={link} title={title} _id={""} tags={[]} onDelete={function (): void {
+                        throw new Error("Function not implemented.");
+                    } } />
+            )}
             </div>
 
         </div>

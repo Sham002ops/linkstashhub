@@ -1,8 +1,7 @@
-import React from "react";
+
 import { useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const SessionExpired = () => {
   const navigate = useNavigate();
 

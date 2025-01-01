@@ -1,2 +1,2 @@
-export const BACKEND_URL = "http://localhost:3000"
-export const SHARE_URL = "http://localhost:5173/dashboard/share"
+export const BACKEND_URL = process.env.BACKEND1_URL
+export const SHARE_URL = process.env.SHARE_BACKEND_URL

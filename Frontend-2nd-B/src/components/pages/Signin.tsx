@@ -20,15 +20,22 @@ async function signin (){
                 password
         })
         const jwt = response.data.token
-        localStorage.setItem("token", jwt);
-        navigate("/dashboard")
+        
+        if(response.data.token !== undefined){
+          localStorage.setItem("token", jwt);
+          localStorage.setItem("loggedIn", "true");
+          navigate("/dashboard")
+        }else{
+          alert(response.data.message)
+        }
+        
         
         
     } catch (error:any) {
       if(error.response && error.response.data.error){
                 alert("Validation Error: " + error.response.data.error.message);
               } else{
-                 alert("An unexpected error occurred, Password Don't Match");
+                 alert("Password Don't Match");
               }
     }
   }

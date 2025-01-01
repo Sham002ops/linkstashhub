@@ -5,6 +5,10 @@
 #ContentPage -webkit-scrollbar {
   display: none;
 }
+body {
+  background-color: #d1d5db; /* Tailwind CSS gray-300 color */
+}
+
 
 @keyframes float {
   0%,

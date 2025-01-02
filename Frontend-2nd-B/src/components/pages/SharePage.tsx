@@ -69,7 +69,7 @@ export const SharePage: React.FC = () => {
                 {data?.content.map(({ type, link, title}, index) => <Card
                     key={index} type={type} link={link} title={title} _id={""} tags={[]} onDelete={function (): void {
                         throw new Error("Function not implemented.");
-                    } } />
+                    } } onOpen={() => {}} />
             )}
             </div>
 

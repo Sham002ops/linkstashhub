@@ -20,6 +20,7 @@ enum ContentType {
 const CreateContent = ({open, onClose} ) => {
     const titleRef = useRef<HTMLInputElement>(null);
     const linkRef = useRef<HTMLInputElement>(null);
+    const descriptionRef = useRef<HTMLTextAreaElement>(null);
     const [type, setType] = useState(ContentType.Youtube);
     const [tags, setTags] = useState<string[]>([]); 
     const [tagInput, setTagInput] = useState<string>("");
@@ -40,11 +41,13 @@ const CreateContent = ({open, onClose} ) => {
 
   async  function addContent(){
         const title = titleRef.current?.value;
+        const description = descriptionRef.current?.value;
         const link = linkRef.current?.value;
 
         await axios.post(`${BACKEND_URL}/api/v1/content`, {
             link,
             title,
+            description,
             type: type,
             tags
             
@@ -65,18 +68,19 @@ const CreateContent = ({open, onClose} ) => {
 
   return <div>
         {open && <div>
-                <div className=' backdrop-blur bg-white/10  h-screen w-screen  fixed top-0 left-0 flex justify-center'>   
+                <div className=' backdrop-blur bg-white/10  h-screen w-screen  fixed top-0 left-0 flex justify-center z-50'>   
                 </div>
-                <div className=' h-screen w-screen  fixed top-0 left-0 flex justify-center '>
+                <div className=' h-screen w-screen  fixed top-0 left-0 flex justify-center z-50 '>
                 <div className='flex flex-col  justify-center '>
-               <span className='bg-white border border-purple-700 shadow-md shadow-purple-700  p-4 w-full rounded-md'>
+               <span className='bg-white border  border-purple-700 shadow-md shadow-purple-700  p-4 w-full rounded-md'>
                <div className='flex justify-end pb-2'>
                     <div className='cursor-pointer' onClick={onClose}>
                         <CloseIcon size='lg'/>
                     </div>    
                </div>
-               <div className='flex gap-8'>
+               <div className=' flex gap-4'>
                <div className=''>
+                <div>
                <h4 className='text-lg p-1 font-bold  text-gray-800'>Add Title and Link</h4>
                <div className='mr-2 ml-2  ' >
                <div className='flex justify-center pb-2'>
@@ -84,9 +88,10 @@ const CreateContent = ({open, onClose} ) => {
                <div className='flex justify-center'>
                 <Input reference={linkRef} size='md' placeholder={"Link"}/></div> 
                </div>
-
-
-
+               <div className='flex justify-center pt-2'>
+                <textarea ref={descriptionRef} className=' border-purple-700 border-2 outline-none w-64 h-16 rounded-md' placeholder={"Description"}/></div> 
+               </div>
+              
                <div className="flex flex-col  mt-4">
                                         <h1 className="text-gray-800 text-lg font-bold">Tags</h1>
                                         <div className="flex gap-2 mt-2 pl-14">
@@ -95,7 +100,7 @@ const CreateContent = ({open, onClose} ) => {
                                                 value={tagInput}
                                                 onChange={(e) => setTagInput(e.target.value.toLowerCase())}
                                                 placeholder="Enter tag"
-                                                className="border rounded-md p-2"
+                                                className="border-2 rounded-md outline-none border-purple-700 p-2"
                                             />
                                             <Button
                                                 text="Add Tag"

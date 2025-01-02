@@ -8,6 +8,7 @@ import Button from '../UI/Button';
 import { useNavigate } from 'react-router-dom';
 import { useContent } from '../hooks/useContent';
 import SearchBar from '../SearchBar';
+import ViewPost from '../UI/ViewPost';
 
 
 interface Content {
@@ -22,6 +23,8 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
     const [content, setContent] = useState<Content[]>([]);
     const [loading, setLoading ] = useState(true);
     const {contents, refresh} = useContent();
+    const [viewmodalOpen, setViewModalOpen] = useState(false);
+    const [selectedContentId, setSelectedContentId] = useState<string | null>(null);
     const navigate = useNavigate();
     // const {contents} = useContent();
 
@@ -34,6 +37,12 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
           console.error("Error deleting content:", error);
       }
   };
+
+  
+  const handleOpen = (id: string) => {
+    setSelectedContentId(id);
+    setViewModalOpen(true);
+};
   
 
   useEffect(() => {
@@ -72,7 +81,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
 
     <div className=' h-40 bg-gray-300 '>
       <Sidebar/> 
-      <div className=' justify-between overflow-hidden  relative ml-64 pl-3 '> 
+      <div className=' justify-between overflow-hidden  relative ml-72 pl-3 '> 
         <div className=' flex items-center'>
           <h2 className="text-3xl font-bold md-4 p-6 pl-12 text-purple-700">
             {contentHeaders[type] || "Default Content"}
@@ -82,8 +91,8 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
        </div>
        </div>
        </div>
-      <div className=' relative ml-72 pl-2 bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
-       <div className='flex flex-wrap h-40 gap-2'>
+      <div className=' relative ml-72 pl-6  bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
+       <div className='flex flex-wrap h-40 gap-4'>
     {(() => {
         try {
             return content.filter((content) =>
@@ -97,7 +106,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
           type={type as "twitter" | "youtube" | "instagram" | "facebook" | "pinterest"}
           link={link}
           title={title}
-          
+          onOpen={() => handleOpen(_id)}
           onDelete={handleDelete}
           />
 
@@ -119,6 +128,13 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
             </div>
            
       </div>
+      {selectedContentId && (
+                <ViewPost
+                    open={viewmodalOpen}
+                    onClose={() => setViewModalOpen(false)}
+                    selectedContentId={selectedContentId}
+                />
+            )}
     </div>
   )
 }

@@ -3,7 +3,7 @@ import  { ReactElement } from 'react'
 type Variants ="primary" | "secondary"|"icon";
 export interface ButtonProps {
     variant: Variants;
-    size: "sm" | "md" | "lg" | "xs"| "bs";
+    size: "sm" | "md" | "lg" | "xs"| "bs"| "lng";
     text?: string;
     startIcon?: ReactElement;
     endIcon?: ReactElement;
@@ -29,6 +29,7 @@ const transitionStyle = {
 const sizeStyles = {
   "xs" : "py-1 px-1",
   "bs" : "py-1 px-4",
+  "lng" : "py-1 px-4" ,
   "sm" : "py-2 px-2" ,
   "md" : "py-2 px-4",
   "lg" : "py-4 px-6"

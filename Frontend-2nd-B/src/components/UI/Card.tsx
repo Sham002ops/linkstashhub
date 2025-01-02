@@ -8,6 +8,7 @@ import YoutubeIcon from "../../icons/YoutubeIcon";
 import DeleteContent from "./DeleteContent";
 import FacebookIcon from "../../icons/facebookIcon";
 import PinterestIcon from "../../icons/PinterestIcon";
+import Button from "./Button";
 
  export interface CardProps {
     _id: string;
@@ -16,10 +17,12 @@ import PinterestIcon from "../../icons/PinterestIcon";
     link: string;
     type: "twitter" | "youtube"| "instagram" | "facebook" | "pinterest";
     onDelete: (id: string) => void;
+    onOpen: () => void;
+    description?: string;
 }
 
-export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
-    // const [content, setContent] = useState([]);
+export const Card = ({_id, onDelete,title, link,tags, type,onOpen}: CardProps & { onOpen: ()=> void}) =>{
+    
     const SmartIcon = () => {
         if (type === "youtube") return <YoutubeIcon size="lg" />;
         if (type === "twitter") return <TwitterIcon size="lg" />;
@@ -36,9 +39,10 @@ export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
         const handleDelete = async ()=> {
             const confermDelete = window.confirm("Are you sure you want to delete this content?")
             if(confermDelete){
-                 const success = await DeleteContent(_id);
-                           
-            if(success !== undefined) {
+                 await DeleteContent(_id);
+                 const success = true;
+               
+            if(success) {
                 onDelete(_id)
             }
             }
@@ -46,9 +50,9 @@ export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
 
     return(
         <div>
-            <div className="p-4 bg-white rounded-md  shadow shadow-purple-300 border-slate-400 border
+            <div className="p-4   bg-white rounded-md  shadow shadow-purple-300 border-slate-400 border
             max-w-72 min-h-52 min-w-min ">
-                 <div className="flex justify-between">
+                 <div className="flex justify-between pb-2">
                     <div className="flex items-center text-md">
                         <div  className="text-gray-500 pr-2">
                             <SmartIcon/>
@@ -69,19 +73,21 @@ export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
                  </div>
                 
                 <div className="pt-4 w-full rounded-lg overflow-hidden ">
-                   {type === "youtube" &&  <iframe className="w-full" src={link.replace("watch", "embed").replace("?v=", "/")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
+                   {type === "youtube" &&  <iframe className="w-full -mt-4 h-36" src={link.replace("watch", "embed").replace("?v=", "/").split("&t=")[0]} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
 
-                   {type === "twitter" && <XEmbed url={link} width={325} />}
+                   {type === "twitter" && <div  className=" flex-col w-80 -m-2 -mt-2 mb-4 justify-items-center  pt-2 -mr-8 -ml-8   h-72">
+                    <XEmbed url={link} />
+                    </div>}
 
-                   {type === "instagram" && <div className=""> <InstagramEmbed
-                    url={link} width={320} height={400} /> 
+                   {type === "instagram" && <div className=" flex-col w-72 -m-8 -mt-28 mb-36 justify-items-center  pt-2   h-72"> <InstagramEmbed
+                    url={link}/> 
                     
                             </div>
                         }
                    {type === "facebook" && <FacebookEmbed
                             url={link}/>
                         }
-                   {type === "pinterest" && <div style={{ display: 'flex', justifyContent: 'center' }}>
+                   {type === "pinterest" && <div  className=" flex-col w-80 -m-2 -mt-8 mb -ml-10  mr-4 pt-2   h-96" style={{ display: 'flex', justifyContent: 'center' }}>
                             <PinterestEmbed 
                                 url={link}
                                 width={345}
@@ -91,17 +97,20 @@ export const Card = ({_id, onDelete,title, link,tags, type}: CardProps) =>{
                         }
 
                 </div> 
-                <div className="mt-4">
-                    <h1 className="text-gray-800 text-sm font-bold">Tags</h1>
-                    <div className="flex gap-2 flex-wrap mt-2">
+                    <h1 className="text-gray-800 text-sm mt-1 font-bold">Tags</h1>
+                    <div className=" flex mt-1 justify-between">
+                    <div className="flex gap-2 flex-wrap  mt-1">
                         {(tags || []).map((tag, index) => (
                             <span
                                 key={index}
-                                className="bg-purple-200 text-purple-700 px-2 py-1 rounded-md"
+                                className="bg-violet-200  text-purple-700 my-1 px-1   rounded-md"
                             >
                                 {tag}
                             </span>
                         )) || <span>No tags available</span>}
+                    </div>
+                    <div className="mt-2 ">
+                    <Button onClick={onOpen} transition='1' size='lng'  variant='primary'text="Open"/>
                     </div>
                 </div>
             </div>

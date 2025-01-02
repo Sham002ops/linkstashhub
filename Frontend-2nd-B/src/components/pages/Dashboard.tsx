@@ -8,11 +8,14 @@ import { useContent } from '../hooks/useContent'
 import Header from '../Header'
 import SearchBar from '../SearchBar'
 import CreateContent from '../UI/CreateContent'
+import ViewPost from '../UI/ViewPost'
 
 
 export function Dashboard({searchQuery, setSearchQuery}) {
       const [modalOpen, setModalOpen]= useState(false);
-      
+      const [viewmodalOpen, setViewModalOpen]= useState(false);
+      const [selectedContentId, setSelectedContentId] = useState<string | null>(null);
+
       const {contents = [], refresh }: { contents: Array<{ _id: string, type: "twitter" | "youtube" | "instagram" | "facebook" | "pinterest", tags: string[], link: string, title: string }>, refresh: () => void } = useContent();
       
       
@@ -22,16 +25,19 @@ export function Dashboard({searchQuery, setSearchQuery}) {
       refresh();
     }
 
+
+    const handleOpen = (id: string) => {
+      setSelectedContentId(id);
+      setViewModalOpen(true);
+  };
+
       useEffect(()=>{
         refresh()
-      }, [modalOpen, refresh])
-
-     
-  
+      }, [modalOpen,viewmodalOpen, refresh])
 
 
   return (
-   <div className=' bg-gray-300 ml-72 relative pl-4'>
+   <div className=' bg-gray-300 ml-72 relative pl-8'>
       <Sidebar/>
         <Header/>
         <SearchBar setSearchQuery={setSearchQuery}  />
@@ -55,24 +61,34 @@ export function Dashboard({searchQuery, setSearchQuery}) {
             </div>
           </div>
         ) : ( 
-          <div id='cards' className='flex gap-8 pt-6  flex-wrap'>
+          <div>
+            <div>
+            {
+              <ViewPost open={viewmodalOpen} onClose={()=>{
+                setViewModalOpen(false)}} selectedContentId={selectedContentId ||''} />
+            }
+            </div>
+            <div>
+            <div id='cards' className='flex gap-6 pt-6  flex-wrap'>
           {contents.filter((content) =>
                 content.tags.some((tag) =>
                   tag.includes(searchQuery.toLowerCase())
                 )
               ).map(({_id,type,tags, link, title}) => <Card 
-            key={_id}
-            _id={_id}
-            tags={tags}
-            type={type}
-            link={link}
-            title={title}
-            
-            onDelete={handleDelete}
+                key={_id}
+                _id={_id}
+                tags={tags}
+                type={type}
+                link={link}
+                title={title}
+                onOpen={() => handleOpen(_id)}
+                onDelete={handleDelete}
             />
 
               )}
         </div>
+            </div>
+          </div>
         
         )}
       </div>

@@ -146,6 +146,7 @@ app.post("/api/v1/content", userMiddleware, async ( req: Request, res: Response)
         link,
         type,
         title: req.body.title,
+        description: req.body.description,
          //@ts-ignore
         userId: req.userId,
         tags
@@ -179,6 +180,20 @@ app.get("/api/v1/content", userMiddleware, async ( req: Request, res: Response) 
     res.status(500).json({ message: "Internal server error" });
 }
 })
+app.get("/api/v1/content/displayContent/:id", userMiddleware, async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { id } = req.params;
+        const content = await ContentModel.findOne({ _id: id });
+        if (!content) {
+            res.status(404).json({ message: "Content not found" });
+            return;
+        }
+        res.json({ content });
+    } catch (error) {
+        console.error("display error:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+});
 
 // @ts-ignore
 app.delete("/api/v1/content/:id", userMiddleware, async ( req: Request, res: Response) => {

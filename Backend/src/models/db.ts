@@ -19,6 +19,7 @@ export const UserModel = model("User", UserSchema );
 
 const ContentSchema = new Schema({
     title: String,
+    description: String,
     link: String,
     tags: [{type: String}],
     type: String,

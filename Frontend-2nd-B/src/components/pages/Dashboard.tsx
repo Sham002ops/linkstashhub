@@ -69,7 +69,7 @@ export function Dashboard({searchQuery, setSearchQuery}) {
             }
             </div>
             <div>
-            <div id='cards' className='flex gap-6 pt-6  flex-wrap'>
+            <div id='cards' className='flex gap-12 pt-6  flex-wrap'>
           {contents.filter((content) =>
                 content.tags.some((tag) =>
                   tag.includes(searchQuery.toLowerCase())

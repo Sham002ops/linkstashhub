@@ -74,7 +74,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
     twitter: "Twitter/X Content",
     instagram: "Instagram Content",
     facebook: " Facebook Content",
-    Pinterest: "Pinterest Content",
+    pinterest: "Pinterest Content",
   };
 
   return (
@@ -83,7 +83,7 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
       <Sidebar/> 
       <div className=' justify-between overflow-hidden  relative ml-72 pl-3 '> 
         <div className=' flex items-center'>
-          <h2 className="text-3xl font-bold md-4 p-6 pl-12 text-purple-700">
+          <h2 className="text-3xl font-bold md-4 p-6  pl-12 text-purple-700">
             {contentHeaders[type] || "Default Content"}
           </h2>
           <div className=' bg-gray-300 pl-96 ml-10  '>
@@ -91,8 +91,8 @@ const ContentPage = ({type, searchQuery, setSearchQuery}: {type: "twitter" | "yo
        </div>
        </div>
        </div>
-      <div className=' relative ml-72 pl-6  bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
-       <div className='flex flex-wrap h-40 gap-4'>
+      <div className=' relative ml-72 pl-12  bg-gray-300 min-h-screen overflow-auto scrollbar-hide'>
+       <div className='flex flex-wrap h-40 pt-6 gap-12'>
     {(() => {
         try {
             return content.filter((content) =>

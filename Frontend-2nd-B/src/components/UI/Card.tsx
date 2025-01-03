@@ -50,7 +50,7 @@ export const Card = ({_id, onDelete,title, link,tags, type,onOpen}: CardProps & 
 
     return(
         <div>
-            <div className="p-4   bg-white rounded-md  shadow shadow-purple-300 border-slate-400 border
+            <div className="p-4   bg-white rounded-2xl  shadow shadow-purple-300 border-slate-400 border
             max-w-72 min-h-52 min-w-min ">
                  <div className="flex justify-between pb-2">
                     <div className="flex items-center text-md">
@@ -79,7 +79,7 @@ export const Card = ({_id, onDelete,title, link,tags, type,onOpen}: CardProps & 
                     <XEmbed url={link} />
                     </div>}
 
-                   {type === "instagram" && <div className=" flex-col w-72 -m-8 -mt-28 mb-36 justify-items-center  pt-2   h-72"> <InstagramEmbed
+                   {type === "instagram" && <div className=" flex-col w-80 -m-8 -mt-28 mb-36 justify-items-center  pt-2   h-72"> <InstagramEmbed
                     url={link}/> 
                     
                             </div>
@@ -87,7 +87,7 @@ export const Card = ({_id, onDelete,title, link,tags, type,onOpen}: CardProps & 
                    {type === "facebook" && <FacebookEmbed
                             url={link}/>
                         }
-                   {type === "pinterest" && <div  className=" flex-col w-80 -m-2 -mt-8 mb -ml-10  mr-4 pt-2   h-96" style={{ display: 'flex', justifyContent: 'center' }}>
+                   {type === "pinterest" && <div  className=" flex-col w-80  justify-items-center  -m-6 -mt-8 mb -ml-16  mr-4 pt-2   h-96" style={{ display: 'flex', justifyContent: 'center' }}>
                             <PinterestEmbed 
                                 url={link}
                                 width={345}

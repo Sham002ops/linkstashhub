@@ -154,7 +154,7 @@ const CreateContent = ({open, onClose} ) => {
                 <Button onClick={addContent} variant='primary'size='md' transition='1' text='Submit'/>
                 </div>
                 </div>
-                <div className='justify-center h-60 '>
+                <div className='justify-center h-60 mt-4 '>
                 <div className=' p-4 border-2 w-96 rounded-md bg-purple-50 text-purple-700 border-purple-700'><h3 className='text-sm font-bold'>Important Note:</h3>
                 <h4 className=' text-sm'>Please ensure that you only use website URLs 
                 <h1>(e.g., https://www.example.com) when adding links to our platform. <h1 className='text-pink-600 font-bold'>For IG use Copy link of website</h1> </h1>

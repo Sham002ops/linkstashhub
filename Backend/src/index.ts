@@ -20,7 +20,7 @@ import { error, log } from "console";
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: ['https://2nd-brain-vault-nu4m.vercel.app'], // Allow frontend domain
+  origin: ['https://2nd-brain-vault.vercel.app'], 
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 app.use((err: Error, req: Request, res: Response, next: Function) => {

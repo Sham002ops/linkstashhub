@@ -56,11 +56,13 @@ export const SharePage: React.FC = () => {
     }
 
     if (!data) {
-        return 
-                 <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-            
+        return (
+          <div className="min-h-screen flex items-center justify-center">
+            Loading...
+          </div>
+        );
       }
-
+      
 
     return(
         <div className="p-4 min-h-screen bg-gray-100">

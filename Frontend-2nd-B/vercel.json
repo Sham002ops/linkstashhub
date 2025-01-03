@@ -1,12 +1,16 @@
 {
-    "installCommand": "npm install",
-    "buildCommand": "npm run build",
-    "outputDirectory": "dist",
-    "framework": "vite",
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ]
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_BACKEND1_URL": "https://2nd-brain-vault.vercel.app",
+    "VITE_SHARE_BACKEND_URL": "https://2nd-brain-vault-nu4m.vercel.app/dashboard/share"
   }
+}

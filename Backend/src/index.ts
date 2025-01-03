@@ -19,7 +19,10 @@ import { error, log } from "console";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ['https://2nd-brain-vault-nu4m.vercel.app'], // Allow frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+}));
 app.use((err: Error, req: Request, res: Response, next: Function) => {
     console.error(err.stack);
     res.status(500).json({ message: "An internal server error occurred" });

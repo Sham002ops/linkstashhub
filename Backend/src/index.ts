@@ -28,7 +28,13 @@ app.use((err: Error, req: Request, res: Response, next: Function) => {
     res.status(500).json({ message: "An internal server error occurred" });
 });
 
-
+app.post("/api/v1/", async ( req: Request, res: Response) => { 
+    console.log(`Server is running on port ${process.env.PORT}`);
+    res.json({
+        message: "Server is running"
+    })
+    
+})
 app.post("/api/v1/signup", async ( req: Request, res: Response) => {
     // zod validation
     try {

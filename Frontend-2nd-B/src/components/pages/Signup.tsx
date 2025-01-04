@@ -1,7 +1,7 @@
 import  { useRef } from 'react'
 import { Input } from '../UI/InputBox'
 import Button from '../UI/Button'
-import { BACKEND_URL } from '../../Config';
+import { BACKEND_URL, SHARE_URL } from '../../Config';
 import {useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { PasswordBox } from '../UI/PasswordBox';
@@ -52,7 +52,10 @@ async function signup (){
 
         
     }
-
+    console.log(`signup.tsx: BACKEND_URL: ${BACKEND_URL}`);
+    console.log(`Shared URL: ${SHARE_URL}/api/v1/signup`);
+    
+    
 
 
   return <div className=' bg-gray-200  h-screen w-screen relative overflow-hidden'>
